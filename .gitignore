@@ -1,0 +1,9 @@
+
+**/log
+**/out
+**/tmp
+**/venv
+__pycache__/
+
+# exlude secrets env variables file
+**/env.set.secrets.sh
