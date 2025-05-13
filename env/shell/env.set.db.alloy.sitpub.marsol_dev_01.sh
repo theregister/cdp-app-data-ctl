@@ -1,0 +1,36 @@
+
+echo ">>"
+echo ">> SETTING ENVIRONMENT VARIABLES"
+echo ">> ALLOYDB_SITPUB_MARSOL_DEV_01"
+echo ">>"
+
+export CDP_DATA_CTL_DB_ENVNAME=alloydb_sitpub_marsol_dev_01
+export CDP_DATA_CTL_DB_HOST=localhost
+export CDP_DATA_CTL_DB_PORT=$CDP_DATA_CTL_GCP_TUNNEL_PORT
+export CDP_DATA_CTL_DB_NAME=sitpub
+export CDP_DATA_CTL_DB_USER=marsol_dev_01
+export CDP_DATA_CTL_DB_PASSWORD=$HELPER_ENV_DB_PASSWORD_ALLOYDB_SITPUB_MARSOL_DEV_01
+export PGPASSWORD=$CDP_DATA_CTL_DB_PASSWORD
+
+# for making helper-python/lib postgres utils to work
+export HELPER_PYTHON_DB_HOST=$CDP_DATA_CTL_DB_HOST
+export HELPER_PYTHON_DB_PORT=$CDP_DATA_CTL_DB_PORT
+export HELPER_PYTHON_DB_NAME=$CDP_DATA_CTL_DB_NAME
+export HELPER_PYTHON_DB_USER=$CDP_DATA_CTL_DB_USER
+export HELPER_PYTHON_DB_PASSWORD=$CDP_DATA_CTL_DB_PASSWORD
+
+echo ">> =================================================================="
+echo ">> CDP_DATA_CTL_GCP_TUNNEL_PORT      = "$CDP_DATA_CTL_GCP_TUNNEL_PORT
+echo ">> CDP_DATA_CTL_DB_ENVNAME           = "$CDP_DATA_CTL_DB_ENVNAME
+echo ">> CDP_DATA_CTL_DB_HOST              = "$CDP_DATA_CTL_DB_HOST
+echo ">> CDP_DATA_CTL_DB_PORT              = "$CDP_DATA_CTL_DB_PORT
+echo ">> CDP_DATA_CTL_DB_NAME              = "$CDP_DATA_CTL_DB_NAME
+echo ">> CDP_DATA_CTL_DB_USER              = "$CDP_DATA_CTL_DB_USER
+echo ">> CDP_DATA_CTL_DB_PASSWORD          = "$CDP_DATA_CTL_DB_PASSWORD
+echo ">> PGPASSWORD                     = "$PGPASSWORD
+echo ">> HELPER_PYTHON_DB_HOST          = "$HELPER_PYTHON_DB_HOST
+echo ">> HELPER_PYTHON_DB_PORT          = "$HELPER_PYTHON_DB_PORT
+echo ">> HELPER_PYTHON_DB_NAME          = "$HELPER_PYTHON_DB_NAME
+echo ">> HELPER_PYTHON_DB_USER          = "$HELPER_PYTHON_DB_USER
+echo ">> HELPER_PYTHON_DB_PASSWORD      = "$HELPER_PYTHON_DB_PASSWORD
+echo ">> =================================================================="
