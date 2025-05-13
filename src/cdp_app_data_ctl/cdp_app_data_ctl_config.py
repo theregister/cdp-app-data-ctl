@@ -8,8 +8,8 @@ import  inspect             as      inspect
 import  datetime            as      datetime
 import  shutil              as      shutil
 
-import cdp_data_ctl_exceptions  as      exceptions
-import cdp_data_ctl_globals     as      globals
+import cdp_app_data_ctl_exceptions  as      exceptions
+import cdp_app_data_ctl_globals     as      globals
 
 import lib.logging.utils_logging as utils_logging
 

@@ -5,21 +5,21 @@
 import click
 
 # load sub commands
-#from Commands.cdp_data_ctl.import_scc   import click_import     as click_import
-from Commands.cdp_data_ctl.env          import click_env        as click_env
-from Commands.cdp_data_ctl.report       import click_report     as click_report
-from Commands.cdp_data_ctl.extract      import click_extract    as click_extract
-from Commands.cdp_data_ctl.load         import click_load       as click_load
+#from Commands.cdp_app_data_ctl.import_scc   import click_import     as click_import
+from Commands.cdp_app_data_ctl.env          import click_env        as click_env
+from Commands.cdp_app_data_ctl.report       import click_report     as click_report
+from Commands.cdp_app_data_ctl.extract      import click_extract    as click_extract
+from Commands.cdp_app_data_ctl.load         import click_load       as click_load
 
-import utils_cdp_data_ctl_to_stage_taxonomy     as utils_cdp_data_ctl_to_stage_taxonomy
+#import utils_cdp_app_data_ctl_to_stage_taxonomy     as utils_cdp_app_data_ctl_to_stage_taxonomy
 
-import utils_cdp_data_ctl_from_stage_taxonomy   as utils_cdp_data_ctl_from_stage_taxonomy
+#import utils_cdp_app_data_ctl_from_stage_taxonomy   as utils_cdp_app_data_ctl_from_stage_taxonomy
 
-import utils_cdp_data_ctl_extract               as utils_cdp_data_ctl_extract
+#import utils_cdp_app_data_ctl_extract               as utils_cdp_app_data_ctl_extract
 
-import utils_cdp_data_ctl_data_version          as utils_cdp_data_ctl_data_version
+#import utils_cdp_app_data_ctl_data_version          as utils_cdp_app_data_ctl_data_version
 
-import cdp_data_ctl_lib             as cdp_data
+import cdp_app_data_ctl_lib             as cdp_app_data
 
 # =============================================================================
 # ENV GROUP
@@ -46,21 +46,21 @@ def process(ctx):
 def extract_keywords_from_assets(ctx):
     """extract keywords from assets"""
     click.echo("extract keywords from assets")
-    utils_cdp_data_ctl_extract.extract_keywords_from_assets(ctx)
+    utils_cdp_app_data_ctl_extract.extract_keywords_from_assets(ctx)
 
 @process.command()
 @click.pass_context
 def match_classification_to_taxonomy(ctx):
     """match the published asset classification to a taxonomy"""
     click.echo("match the published asset classification to a taxonomy")
-    utils_cdp_data_ctl_extract.match_classification_to_taxonomy(ctx)
+    utils_cdp_app_data_ctl_extract.match_classification_to_taxonomy(ctx)
 
 @process.command()
 @click.pass_context
 def data_version_new(ctx):
     """create a new data version"""
     click.echo("create a new data version")
-    utils_cdp_data_ctl_data_version.new(ctx)
+    utils_cdp_app_data_ctl_data_version.new(ctx)
 
 # =============================================================================
 # LOAD GROUP
@@ -87,7 +87,7 @@ def to_stage(ctx):
 def taxonomy(ctx):
     """load taxonomies to staging"""
     click.echo("load taxonomies to staging")
-    utils_cdp_data_ctl_to_stage_taxonomy.load_to_stage(ctx)
+    utils_cdp_app_data_ctl_to_stage_taxonomy.load_to_stage(ctx)
     print("load taxonomies to staging")
 
 # =============================================================================
@@ -105,5 +105,5 @@ def from_stage(ctx):
 def taxonomy(ctx):
     """load taxonomies from staging to data"""
     click.echo("taxonomies")
-    utils_cdp_data_ctl_from_stage_taxonomy.load_from_stage(ctx)
+    utils_cdp_app_data_ctl_from_stage_taxonomy.load_from_stage(ctx)
     print("load taxonomies from staging to data")

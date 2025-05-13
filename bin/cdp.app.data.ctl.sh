@@ -70,7 +70,7 @@ main() {
     echo "Checking for venv"
     echo "===================================================="
 
-    pushd $CDP_DATA_CTL_HOME
+    pushd $CDP_APP_DATA_CTL_HOME
 
     # If we're not in a venv, try to find and activate one
     if ! in_venv; then
@@ -103,7 +103,7 @@ main() {
         # Add your script commands here
         # For example:
         # python your_script.py
-        python $CDP_DATA_CTL_HOME/src/cdp_data_ctl/cdp_data_ctl.py "$@"
+        python $CDP_APP_DATA_CTL_HOME/src/cdp_app_data_ctl/cdp_app_data_ctl.py "$@"
     fi
 }
 

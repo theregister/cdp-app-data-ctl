@@ -15,9 +15,9 @@ import  csv
 import  lib.data.utils_data              as utils_data
 import  lib.postgres.utils_psycopb       as utils_psycopb
 
-import  utils_cdp_data_ctl               as utils_cdp_data_ctl
+import  utils_cdp_app_data_ctl               as utils_cdp_app_data_ctl
 
-import  cdp_data_ctl_globals            as cdp_data_ctl_globals
+import  cdp_app_data_ctl_globals            as cdp_app_data_ctl_globals
 
 #import AI.AI_03.enttech      as EntityTechNER
 
@@ -145,7 +145,7 @@ def process_vendors_and_their_competitors(ctx, connection, import_df):
     # Convert the unqiue technology set into a dataframe column
     output_df_tech = pd.DataFrame(list(technology_set), columns=['level_05_leaf'])
     #print(import_df)
-    load_id = utils_psycopb.get_next_seq_id(connection, "cdp_data_import_load_id_seq")
+    load_id = utils_psycopb.get_next_seq_id(connection, "cdp_app_data_import_load_id_seq")
     ctx.obj.logger.info(f"Next sequence value: {load_id}")
 
     # add other columns
@@ -166,12 +166,12 @@ def process_vendors_and_their_competitors(ctx, connection, import_df):
     # output to file
     utils_data.write_df_to_csv(output_df_tech, Path(ctx.obj.dir_out) / "import_df_tech.csv")
     # write to db
-    utils_psycopb.df_to_table(connection, output_df_tech, "marsol_dev_01.cdp_data_stg_taxonomy")
+    utils_psycopb.df_to_table(connection, output_df_tech, "marsol_dev_01.cdp_app_data_stg_taxonomy")
 
     vendor_set = set(import_df['vendor'])
     # Convert the unqiue technology set into a dataframe column
     output_df_vendor = pd.DataFrame(list(vendor_set), columns=['level_05_leaf'])
-    load_id = utils_psycopb.get_next_seq_id(connection, "cdp_data_import_load_id_seq")
+    load_id = utils_psycopb.get_next_seq_id(connection, "cdp_app_data_import_load_id_seq")
     print(f"Next sequence value: {load_id}")
 
     # add other columns
@@ -192,7 +192,7 @@ def process_vendors_and_their_competitors(ctx, connection, import_df):
     # output to file
     utils_data.write_df_to_csv(output_df_vendor, Path(ctx.obj.dir_out) / "output_df_vendor.csv")
     # write to db
-    utils_psycopb.df_to_table(connection, output_df_vendor, "marsol_dev_01.cdp_data_stg_taxonomy")
+    utils_psycopb.df_to_table(connection, output_df_vendor, "marsol_dev_01.cdp_app_data_stg_taxonomy")
 
 def process_tech_taxonomy_gartner_claude(ctx, connection, import_df):
      
@@ -202,7 +202,7 @@ def process_tech_taxonomy_gartner_claude(ctx, connection, import_df):
     # set column names
     import_df.columns = ['level_02', 'level_03', 'level_04', 'level_05_leaf', 'level_05_description']
 
-    load_id = utils_psycopb.get_next_seq_id(connection, "cdp_data_import_load_id_seq")
+    load_id = utils_psycopb.get_next_seq_id(connection, "cdp_app_data_import_load_id_seq")
     ctx.obj.logger.info(f"Next sequence value: {load_id}")
 
     output_df = import_df
@@ -221,7 +221,7 @@ def process_tech_taxonomy_gartner_claude(ctx, connection, import_df):
     # output to file
     utils_data.write_df_to_csv(output_df, Path(ctx.obj.dir_out) / "output.df.tech.taxonomy.gartner.claude.csv")
     # write to db
-    utils_psycopb.df_to_table(connection, output_df, "marsol_dev_01.cdp_data_stg_taxonomy")
+    utils_psycopb.df_to_table(connection, output_df, "marsol_dev_01.cdp_app_data_stg_taxonomy")
 
 def process_mq(ctx, connection, row):
 
@@ -285,7 +285,7 @@ def process_test_hierarchy_001(ctx, connection, import_df):
     # set column names
     import_df.columns = ['level_01', 'level_02', 'level_03', 'level_04', 'level_05_leaf', 'level_05_description']
 
-    load_id = utils_psycopb.get_next_seq_id(connection, "cdp_data_import_load_id_seq")
+    load_id = utils_psycopb.get_next_seq_id(connection, "cdp_app_data_import_load_id_seq")
     ctx.obj.logger.info(f"Next sequence value: {load_id}")
 
     output_df = import_df
@@ -303,7 +303,7 @@ def process_test_hierarchy_001(ctx, connection, import_df):
     # output to file
     utils_data.write_df_to_csv(output_df, Path(ctx.obj.dir_out) / "output.df.test.hierarchy.001.csv")
     # write to db
-    utils_psycopb.df_to_table(connection, output_df, "marsol_dev_01.cdp_data_stg_taxonomy")
+    utils_psycopb.df_to_table(connection, output_df, "marsol_dev_01.cdp_app_data_stg_taxonomy")
 
 def process_test_hierarchy_002(ctx, connection, import_df):
      
@@ -313,7 +313,7 @@ def process_test_hierarchy_002(ctx, connection, import_df):
     # set column names
     import_df.columns = ['level_01', 'level_02', 'level_03', 'level_04', 'level_05_leaf', 'level_05_description']
 
-    load_id = utils_psycopb.get_next_seq_id(connection, "cdp_data_import_load_id_seq")
+    load_id = utils_psycopb.get_next_seq_id(connection, "cdp_app_data_import_load_id_seq")
     ctx.obj.logger.info(f"Next sequence value: {load_id}")
 
     output_df = import_df
@@ -331,7 +331,7 @@ def process_test_hierarchy_002(ctx, connection, import_df):
     # output to file
     utils_data.write_df_to_csv(output_df, Path(ctx.obj.dir_out) / "output.df.test.hierarchy.002.csv")
     # write to db
-    utils_psycopb.df_to_table(connection, output_df, "marsol_dev_01.cdp_data_stg_taxonomy")
+    utils_psycopb.df_to_table(connection, output_df, "marsol_dev_01.cdp_app_data_stg_taxonomy")
 
 def process_tech_hierarchy_claude(ctx, connection, import_df):
     ctx.obj.logger.info("process_tech_hierarchy_claude_01: " + str(connection.connection.closed))
@@ -342,7 +342,7 @@ def process_tech_hierarchy_claude(ctx, connection, import_df):
         import_df.columns = ['level_01', 'level_02', 'level_03', 'level_04', 'level_05_leaf', 'level_05_description']
     elif len(import_df.columns) == 5:
         import_df.columns = ['level_01', 'level_02', 'level_03', 'level_04', 'level_05_leaf']
-    load_id = utils_psycopb.get_next_seq_id(connection, "cdp_data_import_load_id_seq")
+    load_id = utils_psycopb.get_next_seq_id(connection, "cdp_app_data_import_load_id_seq")
     ctx.obj.logger.info(f"Next sequence value: {load_id}")
 
     output_df = import_df
@@ -360,7 +360,7 @@ def process_tech_hierarchy_claude(ctx, connection, import_df):
     # output to file
     utils_data.write_df_to_csv(output_df, Path(ctx.obj.dir_out) / "output.df.tech.hierarchy.claude.001.csv")
     # write to db
-    utils_psycopb.df_to_table(connection, output_df, "marsol_dev_01.cdp_data_stg_taxonomy")
+    utils_psycopb.df_to_table(connection, output_df, "marsol_dev_01.cdp_app_data_stg_taxonomy")
 
 def import_classification_data(ctx):
 
@@ -445,7 +445,7 @@ def stage_hierarchy_not_used(ctx):
     # fix column names
     df.columns = ['level_01', 'level_02', 'level_03', 'level_04', 'level_05_leaf', 'level_05_description']
     # get load_id
-    next_value = utils_psycopb.get_next_seq_id(connection, "cdp_data_import_load_id_seq")
+    next_value = utils_psycopb.get_next_seq_id(connection, "cdp_app_data_import_load_id_seq")
     print(f"Next sequence value: {next_value}")
 
     # add additional columns to dataframe
@@ -453,7 +453,7 @@ def stage_hierarchy_not_used(ctx):
     df['data_load_timestamp'] = pd.Timestamp.now()
     df['created_by'] = ['test_db_operations'] * len(df)
 
-    utils_psycopb.df_to_table(connection, df, "marsol_dev_01.cdp_data_stg_taxonomy")
+    utils_psycopb.df_to_table(connection, df, "marsol_dev_01.cdp_app_data_stg_taxonomy")
 
 def load_hierarchy(ctx):
     """
@@ -472,11 +472,11 @@ def load_hierarchy(ctx):
     with connection.cursor() as cursor:
 
         # get a new run_id for this run - this will populate current_data_load_id
-        current_data_load_id = utils_psycopb.get_next_seq_id(connection, "cdp_data_import_load_id_seq")
+        current_data_load_id = utils_psycopb.get_next_seq_id(connection, "cdp_app_data_import_load_id_seq")
         ctx.obj.logger.info(f"Next sequence value: {current_data_load_id}")
 
         # get list of hierarchies to create (from import table)
-        cursor.execute(utils_cdp_data_ctl.sql_select_hierarchy_import)
+        cursor.execute(utils_cdp_app_data_ctl.sql_select_hierarchy_import)
         hierarchies_to_create = cursor.fetchall()
 
         # Convert the results to a DataFrame
@@ -492,7 +492,7 @@ def load_hierarchy(ctx):
             source_data_load_id = row['current_data_load_id']
 
             ctx.obj.logger.info(f"Processing hierarchy with data_load_id: {source_data_load_id}")
-            cursor.execute(utils_cdp_data_ctl.sql_select_hierarchy_import_by_load_id, (source_data_load_id,))
+            cursor.execute(utils_cdp_app_data_ctl.sql_select_hierarchy_import_by_load_id, (source_data_load_id,))
             hierarchy_data_to_load = cursor.fetchall()
             hierarchy_data_to_load_df = pd.DataFrame(hierarchy_data_to_load, columns=[desc[0] for desc in cursor.description])
             ctx.obj.logger.info(hierarchy_data_to_load_df)
@@ -500,13 +500,13 @@ def load_hierarchy(ctx):
             # Check if hierarchy already exists
 
             # hierarchy_import data_load_id
-            cursor.execute(utils_cdp_data_ctl.sql_check_hierarchy_exists, (row['source_system'],))
+            cursor.execute(utils_cdp_app_data_ctl.sql_check_hierarchy_exists, (row['source_system'],))
             hierarchy_exists = cursor.fetchone()
 
             if not hierarchy_exists:
                 # Create a new hierarchy
                 ctx.obj.logger.info(f"Creating new hierarchy")
-                cursor.execute(utils_cdp_data_ctl.sql_insert_hierarchy, (row['source_system'], row['source_system'], row['data_type'], 'cdp_data_ctl load hierarchy', 'use hierarchy name', '', source_data_load_id, current_data_load_id))
+                cursor.execute(utils_cdp_app_data_ctl.sql_insert_hierarchy, (row['source_system'], row['source_system'], row['data_type'], 'cdp_app_data_ctl load hierarchy', 'use hierarchy name', '', source_data_load_id, current_data_load_id))
                 hierarchy_id = cursor.fetchone()[0]
                 ctx.obj.logger.info(f"Created new hierarchy with ID: {hierarchy_id}")
             else:
@@ -520,11 +520,11 @@ def load_hierarchy(ctx):
             # create new hierarchy version
             # create a new hierarchy version
             # Get the next version number for the hierarchy
-            cursor.execute(utils_cdp_data_ctl.sql_get_next_hierarchy_version, (hierarchy_id,))
+            cursor.execute(utils_cdp_app_data_ctl.sql_get_next_hierarchy_version, (hierarchy_id,))
             next_version_number = cursor.fetchone()[0]
             ctx.obj.logger.info(f"Next version number for hierarchy {hierarchy_id}: {next_version_number}")
             
-            cursor.execute(utils_cdp_data_ctl.sql_insert_hierarchy_version, (hierarchy_id, next_version_number, 'cdp_data_ctl load hierarchy', 'use hierarchy version data', '', source_data_load_id, current_data_load_id))
+            cursor.execute(utils_cdp_app_data_ctl.sql_insert_hierarchy_version, (hierarchy_id, next_version_number, 'cdp_app_data_ctl load hierarchy', 'use hierarchy version data', '', source_data_load_id, current_data_load_id))
             hierarchy_version_id = cursor.fetchone()[0]
             ctx.obj.logger.info(f"Created new hierarchy version with ID: {hierarchy_version_id}")
 
@@ -553,22 +553,22 @@ def load_hierarchy(ctx):
                 ctx.obj.logger.info("Batch inserting level 01 nodes")
    
                 ctx.obj.logger.info("Level 01 INSERT - QUERY - START")
-                ctx.obj.logger.info(utils_cdp_data_ctl.sql_insert_hierarchy_level_01_rows)
+                ctx.obj.logger.info(utils_cdp_app_data_ctl.sql_insert_hierarchy_level_01_rows)
                 ctx.obj.logger.info("hierarchy_version_id: "    + str(hierarchy_version_id))
                 ctx.obj.logger.info("source_data_load_id: "     + str(source_data_load_id))
                 ctx.obj.logger.info("current_data_load_id: "    + str(current_data_load_id))
-                cursor.execute(utils_cdp_data_ctl.sql_insert_hierarchy_level_01_rows, (hierarchy_version_id, current_data_load_id, source_data_load_id))
+                cursor.execute(utils_cdp_app_data_ctl.sql_insert_hierarchy_level_01_rows, (hierarchy_version_id, current_data_load_id, source_data_load_id))
                 level_01_rows = cursor.fetchall()
                 level_01_df = pd.DataFrame(level_01_rows, columns=[desc[0] for desc in cursor.description])
                 ctx.obj.logger.info("Level 01 DataFrame:")
                 ctx.obj.logger.info(level_01_df)
 
                 ctx.obj.logger.info("Level 01 INSERT - START")
-                ctx.obj.logger.info(utils_cdp_data_ctl.sql_insert_hierarchy_level_01)
+                ctx.obj.logger.info(utils_cdp_app_data_ctl.sql_insert_hierarchy_level_01)
                 ctx.obj.logger.info("hierarchy_version_id: "    + str(hierarchy_version_id))
                 ctx.obj.logger.info("source_data_load_id: "     + str(source_data_load_id))
                 ctx.obj.logger.info("current_data_load_id: "    + str(current_data_load_id))
-                cursor.execute(utils_cdp_data_ctl.sql_insert_hierarchy_level_01, (hierarchy_version_id, current_data_load_id, source_data_load_id))
+                cursor.execute(utils_cdp_app_data_ctl.sql_insert_hierarchy_level_01, (hierarchy_version_id, current_data_load_id, source_data_load_id))
                 level_data = cursor.fetchall()
                 ctx.obj.logger.info("Inserted level 01 nodes:")
                 for row in level_data:
@@ -578,22 +578,22 @@ def load_hierarchy(ctx):
                 connection.commit()
 
                 ctx.obj.logger.info("Level 02 INSERT - QUERY - START")
-                ctx.obj.logger.info(utils_cdp_data_ctl.sql_insert_hierarchy_level_02_rows)
+                ctx.obj.logger.info(utils_cdp_app_data_ctl.sql_insert_hierarchy_level_02_rows)
                 ctx.obj.logger.info("hierarchy_version_id: "    + str(hierarchy_version_id))
                 ctx.obj.logger.info("source_data_load_id: "     + str(source_data_load_id))
                 ctx.obj.logger.info("current_data_load_id: "    + str(current_data_load_id))
-                cursor.execute(utils_cdp_data_ctl.sql_insert_hierarchy_level_02_rows, (source_data_load_id, current_data_load_id, hierarchy_version_id))
+                cursor.execute(utils_cdp_app_data_ctl.sql_insert_hierarchy_level_02_rows, (source_data_load_id, current_data_load_id, hierarchy_version_id))
                 level_02_rows = cursor.fetchall()
                 level_02_df = pd.DataFrame(level_02_rows, columns=[desc[0] for desc in cursor.description])
                 ctx.obj.logger.info("Level 02 DataFrame:")
                 ctx.obj.logger.info(level_02_df)
 
                 ctx.obj.logger.info("Level 02 INSERT - START")
-                ctx.obj.logger.info(utils_cdp_data_ctl.sql_insert_hierarchy_level_02)
+                ctx.obj.logger.info(utils_cdp_app_data_ctl.sql_insert_hierarchy_level_02)
                 ctx.obj.logger.info("hierarchy_version_id: "    + str(hierarchy_version_id))
                 ctx.obj.logger.info("source_data_load_id: "     + str(source_data_load_id))
                 ctx.obj.logger.info("current_data_load_id: "    + str(current_data_load_id))
-                cursor.execute(utils_cdp_data_ctl.sql_insert_hierarchy_level_02, (source_data_load_id, current_data_load_id, hierarchy_version_id))
+                cursor.execute(utils_cdp_app_data_ctl.sql_insert_hierarchy_level_02, (source_data_load_id, current_data_load_id, hierarchy_version_id))
                 level_data = cursor.fetchall()
                 ctx.obj.logger.info("Inserted level 02 nodes:")
                 for row in level_data:
@@ -603,22 +603,22 @@ def load_hierarchy(ctx):
                 connection.commit()
 
                 ctx.obj.logger.info("Level 03 INSERT - QUERY - START")
-                ctx.obj.logger.info(utils_cdp_data_ctl.sql_insert_hierarchy_level_03_rows)
+                ctx.obj.logger.info(utils_cdp_app_data_ctl.sql_insert_hierarchy_level_03_rows)
                 ctx.obj.logger.info("hierarchy_version_id: "    + str(hierarchy_version_id))
                 ctx.obj.logger.info("source_data_load_id: "     + str(source_data_load_id))
                 ctx.obj.logger.info("current_data_load_id: "    + str(current_data_load_id))
-                cursor.execute(utils_cdp_data_ctl.sql_insert_hierarchy_level_03_rows, (source_data_load_id, current_data_load_id, hierarchy_version_id))
+                cursor.execute(utils_cdp_app_data_ctl.sql_insert_hierarchy_level_03_rows, (source_data_load_id, current_data_load_id, hierarchy_version_id))
                 level_rows = cursor.fetchall()
                 level_df = pd.DataFrame(level_rows, columns=[desc[0] for desc in cursor.description])
                 ctx.obj.logger.info("Level 03 DataFrame:")
                 ctx.obj.logger.info(level_df)
 
                 ctx.obj.logger.info("Level 03 INSERT - START")
-                ctx.obj.logger.info(utils_cdp_data_ctl.sql_insert_hierarchy_level_03)
+                ctx.obj.logger.info(utils_cdp_app_data_ctl.sql_insert_hierarchy_level_03)
                 ctx.obj.logger.info("hierarchy_version_id: "    + str(hierarchy_version_id))
                 ctx.obj.logger.info("source_data_load_id: "     + str(source_data_load_id))
                 ctx.obj.logger.info("current_data_load_id: "    + str(current_data_load_id))
-                cursor.execute(utils_cdp_data_ctl.sql_insert_hierarchy_level_03, (source_data_load_id, current_data_load_id, hierarchy_version_id))
+                cursor.execute(utils_cdp_app_data_ctl.sql_insert_hierarchy_level_03, (source_data_load_id, current_data_load_id, hierarchy_version_id))
                 level_data = cursor.fetchall()
                 ctx.obj.logger.info("Inserted level 03 nodes:")
                 for row in level_data:
@@ -646,7 +646,7 @@ def test_db_operations(ctx):
     connection = utils_psycopb.connect(ctx.obj.logger)
     print("test_db_operations: " + str(connection.connection.closed))
 
-    utils_psycopb.print_query_results(connection, "SELECT * FROM marsol_dev_01.cdp_data_stg_taxonomy;")
+    utils_psycopb.print_query_results(connection, "SELECT * FROM marsol_dev_01.cdp_app_data_stg_taxonomy;")
 
     connection.close()
 

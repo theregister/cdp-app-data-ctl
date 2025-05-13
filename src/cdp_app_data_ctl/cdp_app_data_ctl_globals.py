@@ -1,10 +1,10 @@
 
 import datetime
 
-program_name            = 'cdp_data_ctl'
+program_name            = 'cdp_app_data_ctl'
 
-sequence_run_id         = 'cdp_data_run_id_seq'
-sequence_batch_id       = 'cdp_data_batch_id_seq'
+sequence_run_id         = 'cdp_app_data_run_id_seq'
+sequence_batch_id       = 'cdp_app_data_batch_id_seq'
 
 #==========================================================================================
 # SSH
@@ -49,9 +49,9 @@ sequence_batch_id       = 'cdp_data_batch_id_seq'
 #from Commands.Data.Financial  import commands     as data_financial_command_module
 #from Commands.Data.News       import commands     as data_news_command_module
 
-from Commands.cdp_data_ctl import click_cdp_data_ctl as click_cdp_data_ctl_command_module
+#from Commands.click_cdp_app_data_ctl import click_cdp_app_data_ctl as click_cdp_app_data_ctl_command_module
 
-program_name='cdp_data_ctl'
+program_name='cdp_app_data_ctl'
 
 # define command hierarchy and function to call
 command_hierarchy = {
