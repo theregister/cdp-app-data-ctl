@@ -1,0 +1,27 @@
+
+# data manipulation (and data frames)
+pandas
+
+# for command line utility command options
+click
+
+requests
+
+# for connectivity to postgres
+psycopg
+
+# for named entity recognition
+#spacy
+#transformers
+#torch
+
+# for web page parsing
+bs4
+
+# for anthropic api
+anthropic
+tenacity
+
+# vertex ai api
+google-cloud-aiplatform
+vertexai

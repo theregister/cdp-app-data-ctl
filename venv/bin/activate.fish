@@ -33,7 +33,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/Users/pxmitchell/MyFiles/MyProjects/cdp-data-ctl/venv"
+set -gx VIRTUAL_ENV "/Users/pxmitchell/MyFiles/MyProjects/cdp-app-data-ctl/venv"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH
