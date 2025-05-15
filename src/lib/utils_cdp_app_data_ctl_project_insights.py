@@ -35,7 +35,7 @@ def generate(ctx):
             # ============================================================
             # Get ASSET DATA
             # ============================================================
-            cur.execute(utils_cdp_data_ctl_project_insights_sql.sql_get_assets_latest, )
+            cur.execute(utils_cdp_data_ctl_project_insights_sql.get_projects_for_insight_generation, )
             asset_df = pd.DataFrame(cur.fetchall(), columns=[desc[0] for desc in cur.description])
             message = "number of assets selected for processing :" + str(len(asset_df))
             ctx.obj.logger.info(message)

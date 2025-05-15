@@ -38,7 +38,8 @@ export DOCKER_CONTAINER_NAME=c-cdp-data-001
 export HELPER_PYTHON_DB_HOST=localhost
 export HELPER_PYTHON_DB_PORT=5432
 export HELPER_PYTHON_DB_NAME=CDP_APP_DATA_CTL_001
-export HELPER_PYTHON_DB_USER=marsol_dev_01
+# need to sort out how to deal with switching in python for the connect lib (pass from main program not use env variable)
+export HELPER_PYTHON_DB_USER=cdp_app_01_dev_02
 export HELPER_PYTHON_DB_PASSWORD=1234
 
 # add bin directory to path
