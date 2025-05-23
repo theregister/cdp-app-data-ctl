@@ -6,8 +6,8 @@
 # data returned should be 
 get_projects_for_insight_generation = """
 SELECT  count(*)
-FROM    cdp_app_data_project
-WHERE   generate_insights       = 1
-AND     project_type            = 'campaign_insight'
-
+FROM    cdp_app_project_01_v
+WHERE   generate_insight        = true
+AND     type                    = 'campaign_insight'
 """
+

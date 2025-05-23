@@ -36,30 +36,11 @@ def generate(ctx):
             # Get ASSET DATA
             # ============================================================
             cur.execute(utils_cdp_data_ctl_project_insights_sql.get_projects_for_insight_generation, )
-            asset_df = pd.DataFrame(cur.fetchall(), columns=[desc[0] for desc in cur.description])
-            message = "number of assets selected for processing :" + str(len(asset_df))
+            project_df = pd.DataFrame(cur.fetchall(), columns=[desc[0] for desc in cur.description])
+            message = "number of assets selected for processing :" + str(len(project_df))
             ctx.obj.logger.info(message)
             print(message)
-            ctx.obj.logger.info('\n' + str(asset_df))
-
-            # ============================================================
-            # Get TAXONOMY
-            # ============================================================
-            #taxonomy_name = 'taxonomy.version.02.for.update.csv'
-            #taxonomy_version = 1
-
-            # get taxonomy_version_id
-            #cur.execute(utils_cdp_data_ctl_extract_sql.sql_get_taxonomy_version_id, (taxonomy_name, taxonomy_version,))
-            #int_taxonomy_version_id = cur.fetchone()[0]
-            #ctx.obj.logger.info(f"int_taxonomy_version_id: {int_taxonomy_version_id}")
-
-            # get taxonomy
-            #cur.execute(utils_cdp_data_ctl_extract_sql.sql_get_taxonomy, (int_taxonomy_version_id,))
-            #taxonomy_df = pd.DataFrame(cur.fetchall(), columns=[desc[0] for desc in cur.description])
-            #ctx.obj.logger.info("Taxonomy data loaded")
-            #ctx.obj.logger.info(taxonomy_df)
-            #output_path = Path(ctx.obj.dir_out) / "taxonomy_df.csv"
-            #utils_data.write_df_to_csv(taxonomy_df, output_path)
+            ctx.obj.logger.info('\n' + str(project_df))
 
             # ============================================================
             # SET PROMPT
@@ -70,10 +51,10 @@ def generate(ctx):
             # ============================================================
             # LOOP through the Asset Dataframe rows
             # ============================================================
-            for index, row in asset_df.iterrows():
+            for index, row in project_df.iterrows():
 
                 # get new batch_id
-                current_batch_id = utils_psycopb.get_next_seq_id(conn, "cdp_data_batch_id_seq")
+                current_batch_id = utils_psycopb.get_next_seq_id(conn, "cdp_app_batch_id_seq")
                 ctx.obj.logger.info(f"this batch_id: {current_batch_id}")
 
                 ctx.obj.logger.info("=============================================================")

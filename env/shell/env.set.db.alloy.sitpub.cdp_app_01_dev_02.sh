@@ -1,10 +1,10 @@
 
 echo ">>"
 echo ">> SETTING ENVIRONMENT VARIABLES"
-echo ">> ALLOYDB_SITPUB_CDP_APP_01_DEV_01"
+echo ">> ALLOYDB_SITPUB_CDP_APP_01_DEV_021"
 echo ">>"
 
-export CDP_APP_DATA_CTL_DB_ENVNAME=alloydb_sitpub_cdp_app_01_dev_01
+export CDP_APP_DATA_CTL_DB_ENVNAME=alloydb_sitpub_cdp_app_01_dev_02
 export CDP_APP_DATA_CTL_DB_HOST=localhost
 export CDP_APP_DATA_CTL_DB_PORT=$CDP_APP_DATA_CTL_GCP_TUNNEL_PORT
 export CDP_APP_DATA_CTL_DB_NAME=sitpub

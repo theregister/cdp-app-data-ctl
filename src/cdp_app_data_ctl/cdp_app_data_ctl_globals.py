@@ -3,8 +3,8 @@ import datetime
 
 program_name            = 'cdp_app_data_ctl'
 
-sequence_run_id         = 'cdp_app_data_run_id_seq'
-sequence_batch_id       = 'cdp_app_data_batch_id_seq'
+sequence_run_id         = 'cdp_app_run_id_seq'
+sequence_batch_id       = 'cdp_app_batch_id_seq'
 
 #==========================================================================================
 # SSH
