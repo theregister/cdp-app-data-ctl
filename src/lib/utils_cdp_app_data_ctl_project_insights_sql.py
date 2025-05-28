@@ -6,9 +6,9 @@
 # data returned should be 
 get_projects_for_insight_generation = """
 SELECT  project_id,
-        project_name
+        name
 FROM    cdp_app_project_01_v
 WHERE   generate_insight        = true
-AND     type                    = 'campaign_insight'
+AND     type                    = 'campaign_insights'
 """
 
