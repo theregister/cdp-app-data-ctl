@@ -22,12 +22,13 @@ import  cdp_data_ctl_globals                        as  cdp_data_ctl_globals
 import utils_cdp_data_ctl_prompt                    as  utils_cdp_data_ctl_prompt
 import utils_cdp_data_ctl_prompt_taxonomy_entries   as  utils_cdp_data_ctl_prompt_taxonomy_entries
 import utils_cdp_data_ctl_extract_sql               as  utils_cdp_data_ctl_extract_sql
+import utils_cdp_data_ctl_llm                       as  utils_cdp_data_ctl_llm
 
 #import AI.AI_03.enttech      as EntityTechNER
 
-import  vertexai
-from    vertexai.generative_models import GenerativeModel
-from    vertexai.preview.language_models import TextGenerationModel
+#import  vertexai
+#from    vertexai.generative_models import GenerativeModel
+#from    vertexai.preview.language_models import TextGenerationModel
 
 def match_classification_to_taxonomy(ctx):
 
@@ -148,7 +149,7 @@ def match_classification_to_taxonomy(ctx):
                     f.write(prompt)
 
                 # call LLM
-                llm_response_text = call_gemini(ctx, prompt)
+                llm_response_text = utils_cdp_data_ctl_llm.call_gemini(ctx, prompt)
 
                 # ============================================================
                 # Output RAW llm_response_text to file
@@ -327,7 +328,7 @@ def extract_keywords_from_assets(ctx):
                     f.write(prompt)
 
                 # call LLM
-                llm_response_text = call_gemini(ctx, prompt)
+                llm_response_text = utils_cdp_data_ctl_llm.call_gemini(ctx, prompt)
 
                 # ============================================================
                 # Output RAW llm_response_text to file
@@ -507,7 +508,7 @@ def classify_asset(ctx):
                     f.write(prompt)
 
                 # call LLM
-                llm_response_text = call_gemini(ctx, prompt)
+                llm_response_text = utils_cdp_data_ctl_llm.call_gemini(ctx, prompt)
 
                 # ============================================================
                 # Output RAW llm_response_text to file
@@ -664,7 +665,7 @@ def get_taxonomy_entries(ctx):
                 f.write(prompt)
 
             #ctx.obj.logger.info(prompt)
-            llm_response_text = call_gemini(ctx, prompt)
+            llm_response_text = utils_cdp_data_ctl_llm.call_gemini(ctx, prompt)
 
             # ============================================================
             # Output RAW llm_response_text to file
@@ -713,48 +714,3 @@ def get_taxonomy_entries(ctx):
             output_path = Path(ctx.obj.dir_out) / f"llm_response_df.csv"
             utils_data.write_df_to_csv(llm_response_df, output_path)
 
-def call_gemini(ctx, prompt: str):
-
-    PROJECT_ID = "sitpub-customer-data-platform"
-    vertexai.init(project=PROJECT_ID, location="us-central1")
-
-    # set LLM Model
-    model = GenerativeModel("gemini-1.5-flash-002")
-    # prompt should be passed in, just call gemini with constructed prompt
-    ctx.obj.logger.info("Prompt:")
-    ctx.obj.logger.info(prompt)
-    # call LLM
-    llm_response = model.generate_content(prompt)
-    # get response text
-    llm_response_text = llm_response.text
-
-    # Remove first and last lines from llm_response_text
-    llm_response_lines = llm_response_text.split('\n')
-    llm_response_text = '\n'.join(llm_response_lines[1:-2]) 
-    #print(llm_response_text)
- 
-    return(llm_response_text)
-
-def call_gemini_llm_updated(ctx, prompt: str):
-
-    PROJECT_ID = "sitpub-customer-data-platform"
-    vertexai.init(project=PROJECT_ID, location="us-central1")
-
-    # Initialize the TextGenerationModel
-    model = TextGenerationModel.from_pretrained("text-bison@001")
-
-    # Log the prompt
-    ctx.obj.logger.info("Prompt:")
-    ctx.obj.logger.info(prompt)
-
-    # Call the LLM with the prompt
-    llm_response = model.predict(prompt, temperature=0.2, max_output_tokens=1024, top_k=40, top_p=0.8)
-
-    # Get response text
-    llm_response_text = llm_response.text
-
-    # Remove first and last lines from llm_response_text
-    llm_response_lines = llm_response_text.split('\n')
-    llm_response_text = '\n'.join(llm_response_lines[1:-2])
-
-    return llm_response_text

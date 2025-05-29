@@ -361,3 +361,43 @@ def get_prompt_text(prompt_type, prompt_name, input_text="", taxonomy_df=None, a
         print("looking to catch key error to understand better")
         print(f"Error: {e}")
         return f"Error: {e}"
+
+def get_prompt_text_campaign_insights(prompt_type, prompt_name, project_leads_df):
+    """
+    For now separate function for campaign insights generation.
+    Get the prompt text based on the prompt type and name.
+    This function is similar to get_prompt_text but specifically for campaign insights.
+    """
+
+    campaign_insights_20250528_01 = f"""
+        You are an expert in lead generation and marketing campaigns.
+        I want you to analyze the output of a marketing campaign and identify key insights that can help improve future campaigns.
+        The input data I will provide will be a set of leads generated, that consumed particular content.
+
+        You will structure the content into specific sections.  The sections will be as follows:
+        1. Executive Summary - a brief overview of the campaign performance, highlighting key metrics and outcomes.
+        2. An analysis of the assets that were most effective in generating leads.
+        3. An analysis of the job functions that responded
+        4. An analysis of any correlations between the assets and the job functions that responded.
+        5. A strategic analysis of the content prefernces by job role and how this can be used to inform future campaigns.
+        6. Provide a set of future targetting recommendations based on the analysis.
+
+        Output your analysis as TSV data (using tabs as separators instead of commas)
+        The output will specifically be a 2 column table with the following columns
+        - section_name - the name of the section
+        - section_content - the content of the section
+        INPUT_CONTENT: {project_leads_df}
+    """
+
+    prompts = {
+        "campaign_insights_20250528_01":             campaign_insights_20250528_01,
+    }
+
+    # Add other prompts here as needed, incorporating taxonomy_df and input_classifications where applicable.
+
+    try:
+        return prompts.get(prompt_name, "Invalid prompt name")
+    except Exception as e:
+        print("looking to catch key error to understand better")
+        print(f"Error: {e}")
+        return f"Error: {e}"
