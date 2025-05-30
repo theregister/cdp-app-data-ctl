@@ -49,12 +49,6 @@ def generate(ctx):
             ctx.obj.logger.info('\n' + str(project_df))
 
             # ============================================================
-            # SET PROMPT
-            # ============================================================
-            #input_prompt="prompt_classification_taxonomy_03"
-            input_prompt="prompt_keyword_identification_20250428"
-
-            # ============================================================
             # LOOP through the Asset Dataframe rows
             # ============================================================
             for index, row in project_df.iterrows():
@@ -163,7 +157,7 @@ def generate(ctx):
                 llm_response_df['int_source_batch_id']      = -1
                 llm_response_df['int_source_type']          = 'content_insights'
                 llm_response_df['prompt_type']              = 'content_insights'
-                llm_response_df['prompt_name']              = input_prompt
+                llm_response_df['prompt_name']              = input_prompt_name
                 llm_response_df['llm_name']                 = "gemini-1.5-flash-002"
 
                 # Output the concatenated DataFrame to a CSV file
@@ -176,5 +170,3 @@ def generate(ctx):
                 except Exception as e:
                     ctx.obj.logger.error(f"project insights: Error writing llm_response_df to table: {e}")
                     conn.rollback()
-
-                # now update taxonomy with value level 04 id's identified

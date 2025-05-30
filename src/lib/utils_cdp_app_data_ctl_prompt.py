@@ -375,12 +375,12 @@ def get_prompt_text_campaign_insights(prompt_type, prompt_name, project_leads_df
         The input data I will provide will be a set of leads generated, that consumed particular content.
 
         You will structure the content into specific sections.  The sections will be as follows:
-        1. Executive Summary - a brief overview of the campaign performance, highlighting key metrics and outcomes.
-        2. An analysis of the assets that were most effective in generating leads.
-        3. An analysis of the job functions that responded
-        4. An analysis of any correlations between the assets and the job functions that responded.
-        5. A strategic analysis of the content prefernces by job role and how this can be used to inform future campaigns.
-        6. Provide a set of future targetting recommendations based on the analysis.
+        1. section name - Executive Summary - a brief overview of the campaign performance, highlighting key metrics and outcomes.
+        2. section name - Asset Analysis - An analysis of the assets that were most effective in generating leads.
+        3. section name - Job Function Analysis - An analysis of the job functions that responded
+        4. section name - Asset/Job Function Analysis - An analysis of any correlations between the assets and the job functions that responded.
+        5. section name - Job Role Analysis - A strategic analysis of the content prefernces by job role and how this can be used to inform future campaigns.
+        6. section name - Future Recommendations - Provide a set of future targetting recommendations based on the analysis.
 
         Output your analysis as TSV data (using tabs as separators instead of commas)
         The output will specifically be a 2 column table with the following columns
