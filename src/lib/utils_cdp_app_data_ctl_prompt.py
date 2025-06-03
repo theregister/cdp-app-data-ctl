@@ -382,6 +382,8 @@ def get_prompt_text_campaign_insights(prompt_type, prompt_name, project_leads_df
         5. section name - 5. Job Role Analysis - A strategic analysis of the content prefernces by job role and how this can be used to inform future campaigns.
         6. section name - 6. Future Recommendations - Provide a set of future targetting recommendations based on the analysis.
 
+        If the input data provided has multiple campaigns then provide aggregate insights across all campaigns.
+
         Output your analysis as TSV data (using tabs as separators instead of commas)
         The output will specifically be a 2 column table with the following columns
         - section_name - the name of the section

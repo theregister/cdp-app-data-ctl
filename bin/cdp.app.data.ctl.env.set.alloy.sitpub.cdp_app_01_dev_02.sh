@@ -12,5 +12,5 @@ echo ">> CDP_APP_DATA_CTL_DB_PORT               = "$CDP_APP_DATA_CTL_DB_PORT
 echo ">> CDP_APP_DATA_CTL_DB_NAME               = "$CDP_APP_DATA_CTL_DB_NAME
 echo ">> CDP_APP_DATA_CTL_DB_USER               = "$CDP_APP_DATA_CTL_DB_USER
 echo ">> CDP_APP_DATA_CTL_DB_PASSWORD           = "$CDP_APP_DATA_CTL_DB_PASSWORD
-echo ">> PGPASSWORD                         = "$PGPASSWORD
+echo ">> PGPASSWORD                             = "$PGPASSWORD
 echo ">> =================================================================="
