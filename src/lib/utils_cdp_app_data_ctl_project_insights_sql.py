@@ -1,5 +1,5 @@
 
-# want a set of projects to have insights generated for them
+# get the set of projects to have insights generated for them
 # project_type = 'campaign_insight'
 # add flag to project as to whether insight generation is turned on
 # use this flag for now to determine test projects
@@ -9,11 +9,6 @@ SELECT  project.project_id,
         project.name
 FROM    cdp_app_project_01_v						as project
 WHERE   generate_insight        = true
-AND     type                    = 'campaign_insights'
-and exists 	(	select 1
-				from cdp_app_delivery_lead_latest_project_01_v leads
-				where project.project_id = leads.project_id
-			)
 """
 
 get_project_leads_data = """
